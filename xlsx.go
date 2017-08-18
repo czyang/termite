@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-func createXLSX(items []MovieItem) {
+func createXLSX(items []MovieItem, userId string) {
 	file := xlsx.NewFile()
 	sheet, err := file.AddSheet("看过的电影")
 	if err != nil {
@@ -46,7 +46,7 @@ func createXLSX(items []MovieItem) {
 		cell.Value = v.DoubanLink
 	}
 
-	err = file.Save("./movies.xlsx")
+	err = file.Save("./" + userId + "_movies.xlsx")
 	if err != nil {
 		log.Fatal(err)
 	}

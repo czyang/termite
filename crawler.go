@@ -83,14 +83,15 @@ func main() {
 		fmt.Println("Please specify Douban username.")
 		os.Exit(1)
 	}
+	userId := args[0]
 
 	// Iterate pages
-	baseURL := "https://movie.douban.com/people/" + args[0] + "/collect"
+	baseURL := "https://movie.douban.com/people/" + userId + "/collect"
 	nextPageUrl := fetchOnePage(baseURL)
 	for nextPageUrl != "" {
 		nextPageUrl = fetchOnePage(nextPageUrl)
 	}
 
 	// Create Excel file.
-	createXLSX(movieItems)
+	createXLSX(movieItems, userId)
 }
