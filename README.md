@@ -9,9 +9,6 @@ This is a crawler can fetch the specific Douban user's movie rating and reviews.
 # To install
 go get github.com/czyang/termite
 
-# To update
-go get -u github.com/czyang/termite
-
-# To use
+# To use. After fetch It's will create a "movies.xlsx" in your current folder.
 termite YOUR_DOUBAN_USER_NAME
 ```
