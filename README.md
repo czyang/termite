@@ -1,7 +1,5 @@
 # Termite 🐜
 
-**Just for fun project. ❤️ **
-
 This is a crawler can fetch the specific Douban user's movie rating and reviews.
 
 #### Usage
