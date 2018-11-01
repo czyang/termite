@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"net/http/cookiejar"
 	"os"
-
 	"github.com/PuerkitoBio/goquery"
 )
 
@@ -21,6 +20,10 @@ func fetchOnePage(url string) string {
 	req, err := http.NewRequest("GET", url, nil)
 	req.Header.Add("Referer", url)
 	res, err := client.Do(req)
+	//fmt.Println(res, "\n", url, "\n")
+	if res == nil {
+		log.Fatal("res is nil. url: ", url)
+	}
 	defer res.Body.Close()
 	doc, err := goquery.NewDocumentFromResponse(res)
 	if err != nil {
@@ -86,10 +89,11 @@ func main() {
 	userId := args[0]
 
 	// Iterate pages
+	newBaseURL := "https://movie.douban.com"
 	baseURL := "https://movie.douban.com/people/" + userId + "/collect"
 	nextPageUrl := fetchOnePage(baseURL)
 	for nextPageUrl != "" {
-		nextPageUrl = fetchOnePage(nextPageUrl)
+		nextPageUrl = fetchOnePage(newBaseURL + nextPageUrl)
 	}
 
 	// Create Excel file.
